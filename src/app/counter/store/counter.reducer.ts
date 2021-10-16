@@ -4,6 +4,7 @@ import {
   incrementAction,
   resetAction,
 } from './counter.actions';
+import { initialState } from './counter.state';
 
 const _counterReducer = createReducer(
   initialState,
