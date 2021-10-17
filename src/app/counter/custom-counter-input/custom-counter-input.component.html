@@ -1,0 +1,11 @@
+<div class="input-group mb-3">
+  <span class="input-group-text" id="customCount">Custom count</span>
+  <input
+    type="number"
+    class="form-control"
+    aria-label="Sizing example input"
+    aria-describedby="customCount"
+    [(ngModel)]="inputCustomCount"
+  />
+  <button class="btn btn-success ml-1" (click)="addCustomCount()">+ Add</button>
+</div>
