@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import {
   addCustomCountAction,
+  changeCounterTypeAction,
   decrementAction,
   incrementAction,
   resetAction,
@@ -36,6 +37,12 @@ const _counterReducer = createReducer(
     return {
       ...state,
       count: state.count + action.customCount,
+    };
+  }),
+  on(changeCounterTypeAction, (state) => {
+    return {
+      ...state,
+      counterType: 'Box Counter',
     };
   })
 );

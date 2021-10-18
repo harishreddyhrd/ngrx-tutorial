@@ -9,10 +9,15 @@ import { CounterState } from '../store/counter.state';
   styleUrls: ['./counter-output.component.scss'],
 })
 export class CounterOutputComponent implements OnInit {
-  getCount$: Observable<CounterState>;
-  constructor(private store: Store<{ count: CounterState }>) {}
+  // getCount$: Observable<CounterState>;
+  getCount: number;
+  constructor(private _store: Store<{ count: CounterState }>) {}
 
   ngOnInit(): void {
-    this.getCount$ = this.store.select('count');
+    // this.getCount$ = this._store.select('count');
+    this._store.select('count').subscribe((incomingData) => {
+      console.log('COUNT::called');
+      this.getCount = incomingData.count;
+    });
   }
 }

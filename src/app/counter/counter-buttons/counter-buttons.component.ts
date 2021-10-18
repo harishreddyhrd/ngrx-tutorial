@@ -13,17 +13,17 @@ import { CounterState } from '../store/counter.state';
   styleUrls: ['./counter-buttons.component.scss'],
 })
 export class CounterButtonsComponent implements OnInit {
-  constructor(private store: Store<{ count: CounterState }>) {}
+  constructor(private _store: Store<{ count: CounterState }>) {}
 
   ngOnInit(): void {}
 
   increaseCountByOne() {
-    this.store.dispatch(incrementAction());
+    this._store.dispatch(incrementAction());
   }
   decreaseCountByOne() {
-    this.store.dispatch(decrementAction());
+    this._store.dispatch(decrementAction());
   }
   resetCountToZero() {
-    this.store.dispatch(resetAction());
+    this._store.dispatch(resetAction());
   }
 }

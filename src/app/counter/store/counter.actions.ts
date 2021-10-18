@@ -8,3 +8,5 @@ export const addCustomCountAction = createAction(
   'customCountAddition',
   props<{ customCount: number }>()
 );
+
+export const changeCounterTypeAction = createAction('modifyCounterType');

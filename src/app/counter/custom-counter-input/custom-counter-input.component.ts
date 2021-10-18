@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { addCustomCountAction } from '../store/counter.actions';
+import {
+  addCustomCountAction,
+  changeCounterTypeAction,
+} from '../store/counter.actions';
 import { CounterState } from '../store/counter.state';
 
 @Component({
@@ -10,13 +13,17 @@ import { CounterState } from '../store/counter.state';
 })
 export class CustomCounterInputComponent implements OnInit {
   inputCustomCount: number;
-  constructor(private store: Store<{ customCount: CounterState }>) {}
+  constructor(private _store: Store<{ customCount: CounterState }>) {}
 
   ngOnInit(): void {}
 
   addCustomCount() {
-    this.store.dispatch(
+    this._store.dispatch(
       addCustomCountAction({ customCount: this.inputCustomCount })
     );
+  }
+
+  changeCounterType() {
+    this._store.dispatch(changeCounterTypeAction());
   }
 }
