@@ -29,6 +29,7 @@ const _counterReducer = createReducer(
     return {
       ...state,
       count: 0,
+      counterType: 'Eggs Counter',
     };
   }),
   on(addCustomCountAction, (state, action) => {
