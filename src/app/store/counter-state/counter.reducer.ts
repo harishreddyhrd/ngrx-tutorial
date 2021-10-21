@@ -6,10 +6,10 @@ import {
   incrementAction,
   resetAction,
 } from './counter.actions';
-import { initialState } from './counter.state';
+import { initialCounterState } from './counter.state';
 
 const _counterReducer = createReducer(
-  initialState,
+  initialCounterState,
   on(incrementAction, (state) => {
     console.log('on::incrementAction____state', state);
     return {

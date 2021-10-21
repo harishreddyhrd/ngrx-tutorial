@@ -3,7 +3,7 @@ export interface CounterState {
   counterType: string;
 }
 
-export const initialState: CounterState = {
+export const initialCounterState: CounterState = {
   count: 13,
   counterType: 'Baloon Counter',
 };
