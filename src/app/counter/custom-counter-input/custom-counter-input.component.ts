@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import {
   addCustomCountAction,
   changeCounterTypeAction,
-} from '../store/counter.actions';
-import { CounterState } from '../store/counter.state';
+} from '../../store/counter-state/counter.actions';
+import { CounterState } from '../../store/counter-state/counter.state';
 
 @Component({
   selector: 'app-custom-counter-input',

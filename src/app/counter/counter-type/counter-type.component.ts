@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { counterTypeSelector } from '../store/counter.selectors';
-import { CounterState } from '../store/counter.state';
+import { counterTypeSelector } from '../../store/counter-state/counter.selectors';
+import { CounterState } from '../../store/counter-state/counter.state';
 
 @Component({
   selector: 'app-counter-type',

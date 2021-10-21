@@ -4,8 +4,8 @@ import {
   decrementAction,
   incrementAction,
   resetAction,
-} from '../store/counter.actions';
-import { CounterState } from '../store/counter.state';
+} from '../../store/counter-state/counter.actions';
+import { CounterState } from '../../store/counter-state/counter.state';
 
 @Component({
   selector: 'app-counter-buttons',
