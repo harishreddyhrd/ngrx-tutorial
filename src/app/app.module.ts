@@ -17,6 +17,7 @@ import { PostsListComponent } from './posts/posts-list/posts-list.component';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment'; // Angular CLI environment
+import { AppReducer } from './store/app.reducer';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    StoreModule.forRoot({ counter: theCounterReducer }),
+    StoreModule.forRoot(AppReducer),
     // Instrumentation must be imported after importing StoreModule (config is optional)
     StoreDevtoolsModule.instrument({
       // maxAge: 25, // Retains last 25 states

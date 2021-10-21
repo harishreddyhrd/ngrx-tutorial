@@ -3,6 +3,6 @@ import { initialPostsState } from './posts.state';
 
 const _postsReducer = createReducer(initialPostsState);
 
-export function PostsReducer(state, action) {
+export function thePostsReducer(state, action) {
   return _postsReducer(state, action);
 }
