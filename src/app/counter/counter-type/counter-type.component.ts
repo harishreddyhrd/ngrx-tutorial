@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { counterTypeSelector } from '../../store/counter-state/counter.selectors';
-import { CounterState } from '../../store/counter-state/counter.state';
+import { AppState } from '../../store/app.state';
 
 @Component({
   selector: 'app-counter-type',
@@ -11,7 +11,7 @@ import { CounterState } from '../../store/counter-state/counter.state';
 })
 export class CounterTypeComponent implements OnInit {
   getCounterType$: Observable<string>;
-  constructor(private _store: Store<{ count: CounterState }>) {}
+  constructor(private _store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.getCounterType$ = this._store.select(counterTypeSelector);
