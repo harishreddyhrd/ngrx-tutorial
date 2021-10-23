@@ -3,6 +3,23 @@
     <div class="row">
       <h1 class="display-4 p-5 alert alert-success mx-0">Posts</h1>
     </div>
+    <div class="row w-75 mx-auto">
+      <button
+        type="button"
+        name="addNewPost"
+        id="add-post"
+        class="btn btn-primary btn-block mb-2"
+        [routerLink]="['posts/add']"
+        (click)="showAddPostForm = !showAddPostForm"
+      >
+        + New Post
+      </button>
+    </div>
+    <div class="row w-75 mx-auto" *ngIf="showAddPostForm">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- <app-add-post></app-add-post> -->
+    <hr />
     <div class="row">
       <table
         class="table table-striped table-responsive"

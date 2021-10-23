@@ -11,6 +11,7 @@ import { postsSelector } from 'src/app/store/posts-state/posts.selectors';
   styleUrls: ['./posts-list.component.scss'],
 })
 export class PostsListComponent implements OnInit {
+  showAddPostForm: boolean = false;
   listOfPosts!: Observable<Post[]>;
   constructor(private _store: Store<AppState>) {}
 
