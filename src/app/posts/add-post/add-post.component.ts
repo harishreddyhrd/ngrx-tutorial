@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Post } from 'src/app/models/post.model';
+import { AppState } from 'src/app/store/app.state';
+import { addNewPostAction } from 'src/app/store/posts-state/posts.actions';
+import { postsSelector } from 'src/app/store/posts-state/posts.selectors';
 
 @Component({
   selector: 'app-add-post',
@@ -7,22 +12,20 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-post.component.scss'],
 })
 export class AddPostComponent implements OnInit {
-  addNewPostForm: FormGroup;
+  addNewPostForm: FormGroup = new FormGroup({
+    newPostTitle: new FormControl('POST-0X_TITLE', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
+    newPostDescription: new FormControl('POST-0X_DESCRIPTION', [
+      Validators.required,
+      Validators.minLength(10),
+    ]),
+  });
 
-  constructor() {}
+  constructor(private _store: Store<AppState>) {}
 
-  ngOnInit(): void {
-    this.addNewPostForm = new FormGroup({
-      newPostTitle: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(6),
-      ]),
-      newPostDescription: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(10),
-      ]),
-    });
-  }
+  ngOnInit(): void {}
 
   showErrorsForTitle() {
     const titlePlaceholder = this.addNewPostForm.get('newPostTitle');
@@ -52,5 +55,21 @@ export class AddPostComponent implements OnInit {
       return;
     }
     console.log(this.addNewPostForm.value);
+
+    //Define newPost ID
+    let newPostId: number;
+    this._store.select(postsSelector).subscribe((incomingValue) => {
+      newPostId = incomingValue.length + 1;
+    });
+
+    //Define the newPost to be added
+    const newPost: Post = {
+      id: newPostId,
+      title: this.addNewPostForm.value.newPostTitle,
+      description: this.addNewPostForm.value.newPostDescription,
+    };
+
+    //add the new Post
+    this._store.dispatch(addNewPostAction({ newPost }));
   }
 }
