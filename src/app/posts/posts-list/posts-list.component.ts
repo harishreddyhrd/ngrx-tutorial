@@ -12,6 +12,8 @@ import { postsSelector } from 'src/app/store/posts-state/posts.selectors';
 })
 export class PostsListComponent implements OnInit {
   showAddPostForm: boolean = false;
+  showEditPostForm: boolean = false;
+  isPostSwitched: boolean = false;
   listOfPosts!: Observable<Post[]>;
   constructor(private _store: Store<AppState>) {}
 

@@ -9,3 +9,8 @@ export const postsSelector = createSelector(
     return state.postsList;
   }
 );
+
+export const postSelectorByID = (selectedPostId: number) =>
+  createSelector(postsListFeatureSelector, (state) => {
+    return state.postsList.find((thePost) => thePost.id === selectedPostId);
+  });

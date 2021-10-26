@@ -15,7 +15,7 @@
         + New Post
       </button>
     </div>
-    <div class="row w-75 mx-auto" *ngIf="showAddPostForm">
+    <div class="row w-75 mx-auto" *ngIf="showAddPostForm || showEditPostForm">
       <router-outlet></router-outlet>
     </div>
     <!-- <app-add-post></app-add-post> -->
@@ -30,13 +30,25 @@
             <th scope="col">#ID</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let post of postsData">
+          <tr *ngFor="let post of postsData" class="align-middle">
             <th scope="row">{{ post.id }}</th>
             <td>{{ post.title }}</td>
             <td>{{ post.description }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-warning m-1"
+                [routerLink]="['edit', post.id]"
+                (click)="showEditPostForm = true"
+              >
+                Update
+              </button>
+              <button type="button" class="btn btn-danger m-1">Delete</button>
+            </td>
           </tr>
         </tbody>
       </table>
