@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
 import { AppState } from 'src/app/store/app.state';
+import { updateExistingPostAction } from 'src/app/store/posts-state/posts.actions';
 import { postSelectorByID } from 'src/app/store/posts-state/posts.selectors';
 
 @Component({
@@ -18,7 +19,8 @@ export class EditPostComponent implements OnInit, OnDestroy {
   selectedPostSubscription: Subscription;
   constructor(
     private _route: ActivatedRoute,
-    private _store: Store<AppState>
+    private _store: Store<AppState>,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +49,25 @@ export class EditPostComponent implements OnInit, OnDestroy {
     });
   }
 
-  onUpdate() {}
+  onUpdate() {
+    if (!this.editExistingPostForm.valid) {
+      return;
+    }
+    console.log(this.editExistingPostForm.value);
+
+    const editedPostTitle = this.editExistingPostForm.value.editPostTitle;
+    const editedPostDescription =
+      this.editExistingPostForm.value.editPostDescription;
+
+    const editedPost: Post = {
+      id: this.selectedPost.id,
+      title: editedPostTitle,
+      description: editedPostDescription,
+    };
+
+    this._store.dispatch(updateExistingPostAction({ editedPost }));
+    this._router.navigate(['posts']);
+  }
 
   showErrorsForTitle() {
     const titlePlaceholder = this.editExistingPostForm.get('editPostTitle');
