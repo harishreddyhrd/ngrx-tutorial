@@ -18,11 +18,10 @@ const routes: Routes = [
   },
   {
     path: 'posts',
-    component: PostsListComponent,
-    children: [
-      { path: 'posts/add', component: AddPostComponent },
-      { path: 'edit/:id', component: EditPostComponent },
-    ],
+    loadChildren: () =>
+      import('./posts/posts.module').then(
+        (incomingData) => incomingData.PostsModule
+      ),
   },
 ];
 
