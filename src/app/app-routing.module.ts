@@ -9,7 +9,13 @@ import { PostsListComponent } from './posts/posts-list/posts-list.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'counter', component: CounterComponent },
+  {
+    path: 'counter',
+    loadChildren: () =>
+      import('./counter/counter.module').then(
+        (incomingData) => incomingData.CounterModule
+      ),
+  },
   {
     path: 'posts',
     component: PostsListComponent,
