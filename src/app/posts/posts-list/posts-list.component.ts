@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
 import { AppState } from 'src/app/store/app.state';
+import { deleteExistingPostAction } from 'src/app/store/posts-state/posts.actions';
 import { postsSelector } from 'src/app/store/posts-state/posts.selectors';
 
 @Component({
@@ -19,5 +20,12 @@ export class PostsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.listOfPosts = this._store.select(postsSelector);
+  }
+
+  deletePost(thePost) {
+    console.log(thePost);
+    this._store.dispatch(
+      deleteExistingPostAction({ existingPostToBeDeleted: thePost })
+    );
   }
 }

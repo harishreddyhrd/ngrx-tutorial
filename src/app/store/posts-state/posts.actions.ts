@@ -3,6 +3,7 @@ import { Post } from 'src/app/models/post.model';
 
 export const ADD_POST_ACTION = '[posts page] add post action';
 export const UPDATE_POST_ACTION = '[posts page] edit post action';
+export const DELETE_POST_ACTION = '[posts page] delete post action';
 
 export const addNewPostAction = createAction(
   ADD_POST_ACTION,
@@ -12,4 +13,9 @@ export const addNewPostAction = createAction(
 export const updateExistingPostAction = createAction(
   UPDATE_POST_ACTION,
   props<{ editedPost: Post }>()
+);
+
+export const deleteExistingPostAction = createAction(
+  DELETE_POST_ACTION,
+  props<{ existingPostToBeDeleted: Post }>()
 );

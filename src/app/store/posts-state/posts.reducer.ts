@@ -1,5 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
-import { addNewPostAction, updateExistingPostAction } from './posts.actions';
+import {
+  addNewPostAction,
+  deleteExistingPostAction,
+  updateExistingPostAction,
+} from './posts.actions';
 import { initialPostsState } from './posts.state';
 
 const _postsReducer = createReducer(
@@ -16,15 +20,26 @@ const _postsReducer = createReducer(
     let theEditedPost = action.editedPost;
     let updatedPostsList = state.postsList.map((thePostInsidePostsList) => {
       if (action.editedPost.id === thePostInsidePostsList.id) {
-        return action.editedPost;
+        return theEditedPost;
       } else {
         return thePostInsidePostsList;
       }
     });
-    console.log(theEditedPost);
+    // console.log(theEditedPost);
     return {
       ...state,
       postsList: updatedPostsList,
+    };
+  }),
+  on(deleteExistingPostAction, (state, action) => {
+    // console.log(action.existingPostToBeDeleted);
+    const existingPostToBeDeleted = action.existingPostToBeDeleted;
+    const updatedPostsListAfterDeletion = state.postsList.filter((thePost) => {
+      return thePost != existingPostToBeDeleted;
+    });
+    return {
+      ...state,
+      postsList: updatedPostsListAfterDeletion,
     };
   })
 );
