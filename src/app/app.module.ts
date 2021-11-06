@@ -19,7 +19,7 @@ import { AppReducer } from './store/app.reducer';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(AppReducer),
+    StoreModule.forRoot({}),
     // Instrumentation must be imported after importing StoreModule (config is optional)
     StoreDevtoolsModule.instrument({
       // maxAge: 25, // Retains last 25 states

@@ -24,7 +24,7 @@ export class PostsListComponent implements OnInit {
 
   deletePost(thePost) {
     if (confirm('Are you sure want to delete the post?')) {
-      console.log(thePost);
+      // console.log(thePost);
       this._store.dispatch(
         deleteExistingPostAction({ existingPostToBeDeleted: thePost })
       );

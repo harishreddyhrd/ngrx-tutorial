@@ -9,6 +9,9 @@ import { CounterOutputComponent } from './counter-output/counter-output.componen
 import { CounterTypeComponent } from './counter-type/counter-type.component';
 import { CustomCounterInputComponent } from './custom-counter-input/custom-counter-input.component';
 import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { theCounterReducer } from '../store/counter-state/counter.reducer';
+import { COUNTER_STATE_SELECTOR } from '../store/counter-state/counter.selectors';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,11 @@ import { FormsModule } from '@angular/forms';
     CustomCounterInputComponent,
     CounterTypeComponent,
   ],
-  imports: [FormsModule, CommonModule, CounterRoutingModule],
+  imports: [
+    FormsModule,
+    CommonModule,
+    CounterRoutingModule,
+    StoreModule.forFeature(COUNTER_STATE_SELECTOR, theCounterReducer),
+  ],
 })
 export class CounterModule {}
