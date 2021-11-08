@@ -9,12 +9,14 @@ import { HeaderComponent } from './header/header.component';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment'; // Angular CLI environment
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    EffectsModule.forRoot([]),
     StoreModule.forRoot({}),
     // Instrumentation must be imported after importing StoreModule (config is optional)
     StoreDevtoolsModule.instrument({
